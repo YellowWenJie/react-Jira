@@ -67,3 +67,14 @@
         ]
       },
     ```
+
+### Mock（json-serve）
+
+- 安装： `yarn add json-server -D`
+- 项目创建文件夹，然后创建 json 文件
+- json-serve - - watch 创建的文件
+
+### env 文件
+
+- 本地会读`.env.development`
+- 打包会读`.env`
