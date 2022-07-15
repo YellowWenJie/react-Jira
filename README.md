@@ -78,3 +78,51 @@
 
 - 本地会读`.env.development`
 - 打包会读`.env`
+
+### 用 Custom Hook 提取并复用组件代码
+
+![image-20220715231037746](https://tva1.sinaimg.cn/large/e6c9d24egy1h480l081e0j20nu06swf2.jpg)
+
+- 定义复用 mont
+
+  写 hook 一定要用 use 开头
+
+  ```ts
+  export const useMount = (callback: Function) => {
+    useEffect(() => {
+      callback();
+    }, []);
+  };
+  ```
+
+- 节流函数
+
+  ```ts
+  // 节流
+  export const debounce = (func: Function, delay: number) => {
+    let timeout: NodeJS.Timeout;
+    return () => {
+      if (timeout) {
+        clearTimeout(timeout);
+      }
+      timeout = setTimeout(function () {
+        func();
+      }, delay);
+    };
+  };
+  ```
+
+- hook 节流函数
+
+  ```ts
+  export const useDebounce = (value: Object, delay: number) => {
+    // 每次在 value 变化以后，设置一个定时器
+    const [debouncedValue, setDebouncedValue] = useState(value);
+    useEffect(() => {
+      const timeout = setTimeout(() => setDebouncedValue(value), delay);
+      // 每次在上一个 useEffect 处理完以后再运行
+      return () => clearTimeout(timeout);
+    }, [value, delay]);
+    return debouncedValue;
+  };
+  ```
