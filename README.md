@@ -24,7 +24,7 @@
 
 ### 配置：
 
-* 路径：通过在 tsconfig.json 加
+- 路径：通过在 tsconfig.json 加
 
   ```json
   "compilerOptions": {
@@ -32,5 +32,38 @@
       .....
   ```
 
-  
+- prettier 新建俩个文件
 
+  - 安装 `npm install --save-dev --save-exact prettier`
+
+  - `.prettiergnore` 那些文件不需要格式化
+
+  - `.prettierrc.json` 格式化配置文件
+
+  - 安装 `npx mrm@2 lint-staged` 每次代码提交之前格式化
+
+    package.json 添加配置：
+
+    ```json
+
+      "husky": {
+        "hooks": {
+          "pre-commit": "lint-staged"
+        }
+      },
+      "lint-staged": {
+        "*.{js,css,md,ts,tsx}": "prettier --write"
+      }
+    ```
+
+  - 安装 `yarn add eslint-config-prettier -D`，然后 packge.json 配置：
+
+    ```json
+      "eslintConfig": {
+        "extends": [
+          "react-app",
+          "react-app/jest",
+          "prettier"
+        ]
+      },
+    ```
