@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 
-export const isFalsy = (value: any) => (value === 0 ? false : !value);
+export const isFalsy = (value: unknown) => (value === 0 ? false : !value);
 
 // 在一个函数里，改变传入的对象本身是不好的
 export const cleanObject = (object: any) => {
@@ -15,14 +15,14 @@ export const cleanObject = (object: any) => {
   return result;
 };
 
-export const useMount = (callback: Function) => {
+export const useMount = (callback: { (): void; (): void }) => {
   useEffect(() => {
     callback();
   }, []);
 };
 
 // 节流
-export const debounce = (func: Function, delay: number) => {
+export const debounce = (func: () => void, delay: number) => {
   let timeout: NodeJS.Timeout;
   return () => {
     if (timeout) {
@@ -34,7 +34,7 @@ export const debounce = (func: Function, delay: number) => {
   };
 };
 
-export const useDebounce = (value: Object, delay: number) => {
+export const useDebounce = <V>(value: V, delay: number): V => {
   // 每次在 value 变化以后，设置一个定时器
   const [debouncedValue, setDebouncedValue] = useState(value);
   useEffect(() => {

@@ -10,6 +10,8 @@
     "@types/node": "^16.11.44",
     "@types/react": "^18.0.15",
     "@types/react-dom": "^18.0.6",
+    "babel-eslint": "^10.1.0",
+    "jira-dev-tool": "^1.7.61",
     "qs": "^6.11.0",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
@@ -23,7 +25,7 @@
     "test": "react-scripts test",
     "eject": "react-scripts eject",
     "prepare": "husky install",
-    "mock-serve": "json-server __json_server_mock__/db.json --watch --port 3030"
+    "mock-serve": "json-server __json_server_mock__/db.json --watch --port 3030 --middlewares __json_server_mock__/middieware.js"
   },
   "eslintConfig": {
     "extends": [
@@ -45,11 +47,17 @@
     ]
   },
   "devDependencies": {
+    "@typescript-eslint/eslint-plugin": "^5.30.6",
+    "@typescript-eslint/parser": "^5.30.6",
+    "eslint": "^8.19.0",
     "eslint-config-prettier": "^8.5.0",
+    "eslint-plugin-react": "^7.30.1",
     "husky": "^8.0.1",
     "json-server": "^0.17.0",
     "lint-staged": "^13.0.3",
-    "prettier": "2.7.1"
+    "prettier": "2.7.1",
+    "standard": "^17.0.0",
+    "standard-react": "^4.0.0"
   },
   "husky": {
     "hooks": {
@@ -58,5 +66,8 @@
   },
   "lint-staged": {
     "*.{js,css,md,ts,tsx}": "prettier --write"
+  },
+  "msw": {
+    "workerDirectory": "public"
   }
 }

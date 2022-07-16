@@ -126,3 +126,63 @@
     return debouncedValue;
   };
   ```
+
+### TypeScript
+
+- `tople` 元祖类型是一种特俗的数据结构，其实元祖就是一个明确元素数量以及每个元素类型的一个数组。
+
+- 这样居然不会报错
+
+  ```ts
+  interface Base {
+    id: number;
+  }
+  interface Person extends Base {
+    name: string;
+  }
+  // 鸭子类型（duck typing）：面向接口编程，而不是面向对象
+  const sum: Person = { id: 1, name: "11" };
+  const test = (arg: Base): Base => {
+    return arg;
+  };
+  test(sum);
+  ```
+
+### 后端管理
+
+- ` npx imooc-jira-tool`
+
+- 配置`index.tsx`：
+
+  ```tsx
+  import React from "react";
+  import ReactDOM from "react-dom/client";
+  import "./index.css";
+  import App from "./App";
+  import reportWebVitals from "./reportWebVitals";
+  import { loadDevTools } from "jira-dev-tool";
+
+  const root = ReactDOM.createRoot(
+    document.getElementById("root") as HTMLElement
+  );
+  loadDevTools(() =>
+    root.render(
+      <React.StrictMode>
+        <App />
+      </React.StrictMode>
+    )
+  );
+
+  // If you want to start measuring performance in your app, pass a function
+  // to log results (for example: reportWebVitals(console.log))
+  // or send to an analytics endpoint. Learn more: https://bit.ly/CRA-vitals
+  reportWebVitals();
+  ```
+
+- 运行` npx msw init public`
+
+### 消参
+
+- ```ts
+  // .then(setUser); 与 .then((user) => setUser(user)); 一个意思
+  ```
