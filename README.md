@@ -148,6 +148,17 @@
   test(sum);
   ```
 
+- 自动获取类型
+
+  ```ts
+  export const useHttp = () => {
+    const { user } = useAuth();
+    // 自动获取类型
+    return ([endpoint, config]: Parameters<typeof http>) =>
+      http(endpoint, { ...config, token: user?.token });
+  };
+  ```
+
 ### 后端管理
 
 - ` npx imooc-jira-tool`
